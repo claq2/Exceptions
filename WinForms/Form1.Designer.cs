@@ -28,25 +28,49 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonProblem = new System.Windows.Forms.Button();
+            this.buttonAsyncException = new System.Windows.Forms.Button();
+            this.buttonException = new System.Windows.Forms.Button();
+            this.buttonThreadException = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // buttonProblem
+            // buttonAsyncException
             // 
-            this.buttonProblem.Location = new System.Drawing.Point(100, 109);
-            this.buttonProblem.Name = "buttonProblem";
-            this.buttonProblem.Size = new System.Drawing.Size(75, 48);
-            this.buttonProblem.TabIndex = 0;
-            this.buttonProblem.Text = "Cause Problem";
-            this.buttonProblem.UseVisualStyleBackColor = true;
-            this.buttonProblem.Click += new System.EventHandler(this.buttonProblem_Click);
+            this.buttonAsyncException.Location = new System.Drawing.Point(12, 12);
+            this.buttonAsyncException.Name = "buttonAsyncException";
+            this.buttonAsyncException.Size = new System.Drawing.Size(75, 48);
+            this.buttonAsyncException.TabIndex = 0;
+            this.buttonAsyncException.Text = "Async Exception";
+            this.buttonAsyncException.UseVisualStyleBackColor = true;
+            this.buttonAsyncException.Click += new System.EventHandler(this.buttonAsyncException_Click);
+            // 
+            // buttonException
+            // 
+            this.buttonException.Location = new System.Drawing.Point(93, 12);
+            this.buttonException.Name = "buttonException";
+            this.buttonException.Size = new System.Drawing.Size(75, 48);
+            this.buttonException.TabIndex = 1;
+            this.buttonException.Text = "Exception";
+            this.buttonException.UseVisualStyleBackColor = true;
+            this.buttonException.Click += new System.EventHandler(this.buttonException_Click);
+            // 
+            // buttonThreadException
+            // 
+            this.buttonThreadException.Location = new System.Drawing.Point(174, 12);
+            this.buttonThreadException.Name = "buttonThreadException";
+            this.buttonThreadException.Size = new System.Drawing.Size(75, 48);
+            this.buttonThreadException.TabIndex = 2;
+            this.buttonThreadException.Text = "Thread Exception";
+            this.buttonThreadException.UseVisualStyleBackColor = true;
+            this.buttonThreadException.Click += new System.EventHandler(this.buttonThreadException_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.buttonProblem);
+            this.Controls.Add(this.buttonThreadException);
+            this.Controls.Add(this.buttonException);
+            this.Controls.Add(this.buttonAsyncException);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -56,7 +80,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Button buttonProblem;
+        private System.Windows.Forms.Button buttonAsyncException;
+        private System.Windows.Forms.Button buttonException;
+        private System.Windows.Forms.Button buttonThreadException;
     }
 }
 

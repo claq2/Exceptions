@@ -23,7 +23,7 @@ namespace WinForms
 
         }
 
-        private async void buttonProblem_Click(object sender, EventArgs e)
+        private async void buttonAsyncException_Click(object sender, EventArgs e)
         {
             await this.AsyncProcedure();
         }
@@ -36,6 +36,17 @@ namespace WinForms
         private async Task AsyncProcedure()
         {
             throw new Exception("Oh noooo!");
+        }
+
+        private void buttonException_Click(object sender, EventArgs e)
+        {
+            throw new Exception("Oh noooo!");
+        }
+
+        private void buttonThreadException_Click(object sender, EventArgs e)
+        {
+            var thread = new Thread(ThreadProcedure);
+            thread.Start();
         }
     }
 }
