@@ -7,8 +7,8 @@
     <ProjectGuid>{D46ADDBC-60DE-4949-988D-DAD272865930}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Console</RootNamespace>
-    <AssemblyName>Console</AssemblyName>
+    <RootNamespace>ConsoleExceptionDemo</RootNamespace>
+    <AssemblyName>ConsoleExceptionDemo</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

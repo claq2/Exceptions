@@ -5,31 +5,34 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Console
+namespace ConsoleExceptionDemo
 {
     class Program
     {
         static void Main(string[] args)
         {
-            System.Console.WriteLine("1. Throw on this thread");
-            System.Console.WriteLine("2. Throw on new Thread thread");
-            System.Console.WriteLine("3. Throw on async thread");
-            int input = System.Console.Read();
-            char inputChar = (char)input;
-            if (inputChar == '1')
+            Console.WriteLine("1. Throw on this thread");
+            Console.WriteLine("2. Throw on new Thread thread");
+            Console.WriteLine("3. Throw on async thread");
+            string input = Console.ReadLine();
+            //char inputChar = (char)input;
+            if (input == "1")
             {
                 throw new Exception("Oh noooo!");
             }
-            else if (inputChar == '2')
+            else if (input == "2")
             {
                 var thread = new Thread(ThreadProcedure);
                 thread.Start();
             }
-            else if (inputChar == '3')
-            { 
+            else if (input == "3")
+            {
                 AsyncProcedure().Wait();
             }
-            
+            else
+            {
+                Console.WriteLine("Exiting normally.");
+            }
         }
 
         static async Task AsyncProcedure()
