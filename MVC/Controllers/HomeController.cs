@@ -38,7 +38,7 @@ namespace MVC.Controllers
             throw new Exception("Oh noooo!");
         }
 
-        static async Task AsyncProcedure()
+        private async Task AsyncProcedure()
         {
             throw new Exception("Oh noooo!");
         }

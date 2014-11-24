@@ -36,5 +36,20 @@ namespace Wpf
         {
             throw new Exception("Oh noooo!");
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            throw new Exception("Oh noooo!");
+        }
+
+        private async void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            await AsyncProcedure();
+        }
+
+        private async Task AsyncProcedure()
+        {
+            throw new Exception("Oh noooo!");
+        }
     }
 }

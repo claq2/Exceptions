@@ -3,7 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <Button Content="Cause Problems" HorizontalAlignment="Left" Margin="176,134,0,0" VerticalAlignment="Top" Width="101" Height="47" Click="Button_Click"/>
+        <Button Content="Thread Exception" HorizontalAlignment="Left" Margin="222,10,0,0" VerticalAlignment="Top" Width="101" Height="47" Click="Button_Click"/>
+        <Button Content="Exception" HorizontalAlignment="Left" Margin="116,10,0,0" VerticalAlignment="Top" Width="101" Height="47" Click="Button_Click_1" />
+        <Button Content="Async Exception" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="101" Height="47" Click="Button_Click_2"/>
 
     </Grid>
 </Window>
