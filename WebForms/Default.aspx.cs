@@ -11,25 +11,19 @@ namespace WebForms
 {
     public partial class _Default : Page
     {
+        private readonly ManualResetEvent[] handles = new ManualResetEvent[1] { new ManualResetEvent(false) };
+
         protected void Page_Load(object sender, EventArgs e)
         {
             
         }
 
-        private void ThreadProcedure(object state)
-        {
-            throw new Exception("Oh noooo!");
-        }
-
-        private async Task AsyncProcedure()
-        {
-            throw new Exception("Oh noooo!");
-        }
-
         protected void ButtonThreadException_Click(object sender, EventArgs e)
         {
             var thread = new Thread(ThreadProcedure);
+            this.handles[0].Reset();
             thread.Start();
+            WaitHandle.WaitAll(this.handles);
         }
 
         protected async void ButtonAsyncException_Click(object sender, EventArgs e)
@@ -43,6 +37,17 @@ namespace WebForms
         }
 
         protected void ButtonException_Click(object sender, EventArgs e)
+        {
+            throw new Exception("Oh noooo!");
+        }
+
+        private void ThreadProcedure(object state)
+        {
+            throw new Exception("Oh noooo!");
+            this.handles[0].Set();
+        }
+
+        private async Task AsyncProcedure()
         {
             throw new Exception("Oh noooo!");
         }

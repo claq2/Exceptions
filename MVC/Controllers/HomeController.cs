@@ -10,6 +10,8 @@ namespace MVC.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ManualResetEvent[] handles = new ManualResetEvent[1] { new ManualResetEvent(false) };
+
         public ActionResult Index()
         {
             return View();
@@ -23,7 +25,9 @@ namespace MVC.Controllers
         public ActionResult ThrowBackgroundException()
         {
             Thread t = new Thread(this.ThreadProcedure);
+            this.handles[0].Reset();
             t.Start();
+            WaitHandle.WaitAll(this.handles);
             return View("Index");
         }
 
@@ -36,6 +40,7 @@ namespace MVC.Controllers
         private void ThreadProcedure(object state)
         {
             throw new Exception("Oh noooo!");
+            this.handles[0].Set();
         }
 
         private async Task AsyncProcedure()

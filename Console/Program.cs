@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,8 +15,11 @@ namespace ConsoleExceptionDemo
             Console.WriteLine("1. Throw on this thread");
             Console.WriteLine("2. Throw on new Thread thread");
             Console.WriteLine("3. Throw on async thread");
+            Console.WriteLine("4. Get WCF exception");
+            Console.WriteLine("5. Get WebAPI HTTP 500 error with HTTP client");
+            Console.WriteLine("6. Get WebAPI bare exception with HTTP client");
+            Console.WriteLine("7. Get WebAPI HTTP exception with HTTP client");
             string input = Console.ReadLine();
-            //char inputChar = (char)input;
             if (input == "1")
             {
                 throw new Exception("Oh noooo!");
@@ -28,6 +32,43 @@ namespace ConsoleExceptionDemo
             else if (input == "3")
             {
                 AsyncProcedure().Wait();
+            }
+            else if (input == "4")
+            {
+                using (ExceptionService.ExceptionServiceClient client = new ExceptionService.ExceptionServiceClient())
+                {
+                    client.DoWork();
+                }
+            }
+            else if (input == "5")
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    var respTask = client.GetAsync("http://james2012/mvc/api/exception");
+                    respTask.Wait();
+                    var result = respTask.Result;
+                    var contentTask = result.Content.ReadAsStringAsync();
+                    contentTask.Wait();
+                    Console.WriteLine("Ha! There is no exception. Only an HTTP status of {0} ({0:d}) with a message of \"{1}\", and content \"{2}\"", result.StatusCode, result.ReasonPhrase, contentTask.Result);
+                }
+            }
+            else if (input == "6")
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    var respTask = client.GetAsync("http://james2012/mvc/api/exception");
+                    respTask.Wait();
+                    respTask.Result.EnsureSuccessStatusCode();
+                }
+            }
+            else if (input == "7")
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    var respTask = client.GetAsync("http://james2012/mvc/api/betterexception");
+                    respTask.Wait();
+                    respTask.Result.EnsureSuccessStatusCode();
+                }
             }
             else
             {
