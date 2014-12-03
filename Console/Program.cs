@@ -12,6 +12,7 @@ namespace ConsoleExceptionDemo
     {
         static void Main(string[] args)
         {
+            const string server = "http://gauss2012";
             Console.WriteLine("1. Throw on this thread");
             Console.WriteLine("2. Throw on new Thread thread");
             Console.WriteLine("3. Throw on async thread");
@@ -44,7 +45,7 @@ namespace ConsoleExceptionDemo
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    var respTask = client.GetAsync("http://james2012/mvc/api/exception");
+                    var respTask = client.GetAsync(String.Format("{0}/mvc/api/exception", server));
                     respTask.Wait();
                     var result = respTask.Result;
                     var contentTask = result.Content.ReadAsStringAsync();
@@ -56,7 +57,7 @@ namespace ConsoleExceptionDemo
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    var respTask = client.GetAsync("http://james2012/mvc/api/exception");
+                    var respTask = client.GetAsync(String.Format("{0}/mvc/api/exception", server));
                     respTask.Wait();
                     respTask.Result.EnsureSuccessStatusCode();
                 }
@@ -65,7 +66,7 @@ namespace ConsoleExceptionDemo
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    var respTask = client.GetAsync("http://james2012/mvc/api/betterexception");
+                    var respTask = client.GetAsync(String.Format("{0}/mvc/api/exception", server));
                     respTask.Wait();
                     respTask.Result.EnsureSuccessStatusCode();
                 }
