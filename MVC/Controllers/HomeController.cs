@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
@@ -10,6 +11,8 @@ namespace MVC.Controllers
 {
     public class HomeController : Controller
     {
+        const string server = "http://JM-VM81";
+
         private readonly ManualResetEvent[] handles = new ManualResetEvent[1] { new ManualResetEvent(false) };
 
         public ActionResult Index()
@@ -34,6 +37,18 @@ namespace MVC.Controllers
         public async Task<ActionResult> ThrowAsyncException()
         {
             await AsyncProcedure();
+            return View("Index");
+        }
+
+        public ActionResult ThrowHttpClientException()
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                var respTask = client.GetAsync(String.Format("{0}/mvc/api/exception", server));
+                respTask.Wait();
+                respTask.Result.EnsureSuccessStatusCode();
+            }
+
             return View("Index");
         }
 

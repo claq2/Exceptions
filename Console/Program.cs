@@ -12,7 +12,7 @@ namespace ConsoleExceptionDemo
     {
         static void Main(string[] args)
         {
-            const string server = "http://gauss2012";
+            const string server = "http://JM-VM81";
             Console.WriteLine("1. Throw on this thread");
             Console.WriteLine("2. Throw on new Thread thread");
             Console.WriteLine("3. Throw on async thread");
