@@ -11,7 +11,7 @@ namespace MVC.Controllers
 {
     public class HomeController : Controller
     {
-        const string server = "http://JM-VM81";
+        const string server = "http://exceptionserver";
 
         private readonly ManualResetEvent[] handles = new ManualResetEvent[1] { new ManualResetEvent(false) };
 
