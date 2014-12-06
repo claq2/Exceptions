@@ -66,7 +66,7 @@ namespace ConsoleExceptionDemo
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    var respTask = client.GetAsync(String.Format("{0}/mvc/api/exception", server));
+                    var respTask = client.GetAsync(String.Format("{0}/mvc/api/betterexception", server));
                     respTask.Wait();
                     respTask.Result.EnsureSuccessStatusCode();
                 }

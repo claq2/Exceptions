@@ -52,6 +52,18 @@ namespace MVC.Controllers
             return View("Index");
         }
 
+        public ActionResult ThrowHttpClientBetterException()
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                var respTask = client.GetAsync(String.Format("{0}/mvc/api/betterexception", server));
+                respTask.Wait();
+                respTask.Result.EnsureSuccessStatusCode();
+            }
+
+            return View("Index");
+        }
+
         private void ThreadProcedure(object state)
         {
             throw new Exception("Oh noooo!");
