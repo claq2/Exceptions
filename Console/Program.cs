@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace ConsoleExceptionDemo
 {
@@ -20,6 +22,7 @@ namespace ConsoleExceptionDemo
             Console.WriteLine("5. Get WebAPI HTTP 500 error with HTTP client");
             Console.WriteLine("6. Get WebAPI bare exception with HTTP client");
             Console.WriteLine("7. Get WebAPI HTTP exception with HTTP client");
+            Console.WriteLine("8. Get WebAPI bare exception with HTTP client and deserialize it");
             string input = Console.ReadLine();
             if (input == "1")
             {
@@ -62,13 +65,18 @@ namespace ConsoleExceptionDemo
                     respTask.Result.EnsureSuccessStatusCode();
                 }
             }
-            else if (input == "7")
+            else if (input == "8")
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    var respTask = client.GetAsync(String.Format("{0}/mvc/api/betterexception", server));
+                    var respTask = client.GetAsync(String.Format("{0}/mvc/api/exception", server));
                     respTask.Wait();
-                    respTask.Result.EnsureSuccessStatusCode();
+                    if (!respTask.Result.IsSuccessStatusCode)
+                    {
+                        string responseBody = respTask.Result.Content.ReadAsStringAsync().Result;
+                        var error = JsonConvert.DeserializeObject<MyHttpError>(responseBody);
+                        throw new MyException(error.ExceptionMessage, error.StackTrace);
+                    }
                 }
             }
             else
