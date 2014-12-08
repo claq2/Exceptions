@@ -19,5 +19,18 @@ namespace MVC
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            Exception exception = Server.GetLastError();
+
+            // Log it there.
+
+            Response.Clear();
+            if (exception is BusinessLayerException)
+            {
+                Server.ClearError();
+            }
+        }
     }
 }
