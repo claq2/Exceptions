@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using BusinessLayer;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,7 @@ namespace ConsoleExceptionDemo
             Console.WriteLine("6. Get WebAPI bare exception with HTTP client");
             Console.WriteLine("7. Get WebAPI HTTP exception with HTTP client");
             Console.WriteLine("8. Get WebAPI bare exception with HTTP client and deserialize it");
+            Console.WriteLine("9. Get a business layer exception");
             string input = Console.ReadLine();
             if (input == "1")
             {
@@ -77,6 +79,17 @@ namespace ConsoleExceptionDemo
                         var error = JsonConvert.DeserializeObject<MyHttpError>(responseBody);
                         throw new MyException(error.ExceptionMessage, error.StackTrace);
                     }
+                }
+            }
+            else if (input == "9")
+            {
+                try
+                {
+                    new CustomerOperations().SaveCustomer(new CustomerDto { FirstName = "Joey", Id = 1, LastName = "Shabadoo" });
+                }
+                catch (BusinessLayerException ex)
+                {
+                    Console.WriteLine(String.Format("Error code: {0} Message: {1}", ex.Data[BusinessLayerException.ReasonKey], ex.Message));
                 }
             }
             else
