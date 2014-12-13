@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
+using System.Globalization;
 
 namespace ConsoleExceptionDemo
 {
@@ -25,6 +26,7 @@ namespace ConsoleExceptionDemo
             Console.WriteLine("7. Get WebAPI HTTP exception with HTTP client");
             Console.WriteLine("8. Get WebAPI bare exception with HTTP client and deserialize it");
             Console.WriteLine("9. Get a business layer exception");
+            Console.WriteLine("10. Get a business layer exception in French");
             string input = Console.ReadLine();
             if (input == "1")
             {
@@ -85,7 +87,29 @@ namespace ConsoleExceptionDemo
             {
                 try
                 {
-                    new CustomerOperations().SaveCustomer(new CustomerDto { FirstName = "Joey", Id = 1, LastName = "Shabadoo" });
+                    new CustomerOperations().SaveCustomer(new CustomerDto
+                    {
+                        FirstName = "Joey",
+                        Id = 1,
+                        LastName = "Shabadoo"
+                    });
+                }
+                catch (BusinessLayerException ex)
+                {
+                    Console.WriteLine(String.Format("Error code: {0} Message: {1}", ex.Data[BusinessLayerException.ReasonKey], ex.Message));
+                }
+            }
+            else if (input == "10")
+            {
+                try
+                {
+                    Thread.CurrentThread.CurrentUICulture = new CultureInfo("fr-CA");
+                    new CustomerOperations().SaveCustomer(new CustomerDto
+                    {
+                        FirstName = "Joey",
+                        Id = 1,
+                        LastName = "Shabadoo"
+                    });
                 }
                 catch (BusinessLayerException ex)
                 {

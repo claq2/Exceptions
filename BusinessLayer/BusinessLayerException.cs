@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using BusinessLayer.Properties;
 
 namespace BusinessLayer
 {
@@ -17,6 +18,7 @@ namespace BusinessLayer
         /// </summary>
         /// <param name="reason"></param>
         public BusinessLayerException(ErrorReason reason)
+            : base(Resources.ResourceManager.GetString(reason.ToString()))
         {
             this.Data.Add(ReasonKey, reason);
         }
@@ -36,7 +38,7 @@ namespace BusinessLayer
         protected BusinessLayerException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
-            
+
         }
     }
 }
