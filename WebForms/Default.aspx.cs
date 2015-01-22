@@ -44,6 +44,7 @@ namespace WebForms
         private void ThreadProcedure(object state)
         {
             throw new Exception("Oh noooo!");
+            // Next line is unreachable - I'm just simulating something going wrong before reaching it
             this.handles[0].Set();
         }
 

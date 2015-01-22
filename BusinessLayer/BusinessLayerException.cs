@@ -1,44 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using BusinessLayer.Properties;
 
 namespace BusinessLayer
 {
-    // General purpose exception type for this layer. The alternative is an exception type for each error.
+    // General purpose exception type for this layer.
     public class BusinessLayerException : Exception
     {
         public const string ReasonKey = "reason";
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="reason"></param>
         public BusinessLayerException(ErrorReason reason)
             : base(Resources.ResourceManager.GetString(reason.ToString()))
         {
             this.Data.Add(ReasonKey, reason);
         }
 
-        public BusinessLayerException(string message, ErrorReason reason)
-            : base(message)
+        public BusinessLayerException(ErrorReason reason, Exception ex)
+            : base(Resources.ResourceManager.GetString(reason.ToString()), ex)
         {
             this.Data.Add(ReasonKey, reason);
-        }
-
-        public BusinessLayerException(string message, Exception innerException, ErrorReason reason)
-            : base(message, innerException)
-        {
-            this.Data.Add(ReasonKey, reason);
-        }
-
-        protected BusinessLayerException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
-
         }
     }
 }

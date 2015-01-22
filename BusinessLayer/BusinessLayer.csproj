@@ -39,16 +39,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlternateBusinessLayerException.cs" />
+    <Compile Include="BadExceptions\CustomerOperationException.cs" />
+    <Compile Include="BadExceptions\Operations.cs" />
+    <Compile Include="BadExceptions\OrderOperationException.cs" />
     <Compile Include="BusinessLayerException.cs" />
     <Compile Include="CustomerDto.cs" />
     <Compile Include="CustomerOperations.cs" />
     <Compile Include="ErrorReasons.cs" />
+    <Compile Include="OrderDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="SaveCustomerException.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataLayer\DataLayer.csproj">

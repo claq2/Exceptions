@@ -13,5 +13,8 @@ namespace BusinessLayer
     public enum ErrorReason
     {
         SaveCustomerError,
+        LoadCustomerError,
+        SaveOrderError,
+        LoadOrderError,
     }
 }

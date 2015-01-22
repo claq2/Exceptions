@@ -14,11 +14,6 @@ namespace BusinessLayer
         
         public int Id { get; set; }
 
-        public CustomerDto()
-        {
-            
-        }
-
         public Customer ToDataLayerObject()
         {
             return new Customer { FirstName = this.FirstName, Id = this.Id, LastName = this.LastName };

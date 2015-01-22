@@ -26,7 +26,9 @@ namespace BusinessLayer
                 // 1. log ex and then throw new BusinessLayerException without ex as the inner exception
                 // 2. wrap ex into the BusinessLayerException
                 // It depends on your logging mechanism. Is there a central exception logging system in the next layer up?
-                throw new BusinessLayerException(Resources.SaveCustomerError, ex, ErrorReason.SaveCustomerError);
+                throw new BusinessLayerException(ErrorReason.SaveCustomerError, ex);
+                // or
+                // throw new SaveCustomerException(ex);
             }
         }
     }

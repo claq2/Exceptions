@@ -5,17 +5,17 @@ using System.Text;
 
 namespace ConsoleExceptionDemo
 {
-    class MyException : Exception
+    public class MyException : Exception
     {
         private readonly string stackTrace;
 
         public MyException(string message, string stackTrace)
             : base(message)
         {
-            // TODO: Complete member initialization
             this.stackTrace = stackTrace;
         }
 
+        // You can't set the StackTrace value on System.Exception, but you can override it
         public override string StackTrace
         {
             get { return this.stackTrace; }

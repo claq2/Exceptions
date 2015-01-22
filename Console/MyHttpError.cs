@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ConsoleExceptionDemo
 {
-    class MyHttpError
+    public class MyHttpError
     {
         public string ExceptionMessage { get; set; }
         public string ExceptionType { get; set; }
